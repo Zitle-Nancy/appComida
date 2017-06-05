@@ -1,2 +1,7 @@
 # appComida
-Aplicaciòn que filtra y te da la ubicacion  del restaurante que selecciones
+## Objetivos 
+
+* Cargar tu ubicacion actual
+* Filtrar las busquedas
+* Posicionarte de acuerdo a la busqueda seleccionada
+* Extra (marcar la ruta)
