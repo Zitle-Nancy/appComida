@@ -53,11 +53,12 @@ var cargarPagina = function () {
 	mostrarListas(listaRestaurantes);
 	$("#obtener-localizacion").click(obtenerUbicacion);
 	$('.address').click(cambiarUbicacion);	
+	$('#search-form').submit(filtrar);
 };
 var obtenerUbicacion = function (e) {
 	if (navigator.geolocation) {
 		navigator.geolocation.getCurrentPosition(mostrarPosicion, function (error) {
-			console.log(error);
+			// console.log(error);
 		});
 	} else {
 		alert("Actualice su navegador");
@@ -65,7 +66,7 @@ var obtenerUbicacion = function (e) {
 	// alert('mapa');
 };
 var mostrarPosicion = function (posicion) {
-	console.log(posicion);
+	// console.log(posicion);
 	var coordenadas = {
 		lat: posicion.coords.latitude, 
 		lng: posicion.coords.longitude
@@ -85,7 +86,7 @@ var mostrarMapa = function (coordenadas) {
 }
 
 var mostrarListas = function(listaRestaurantes){
- 	console.log(listaRestaurantes);
+ 	// console.log(listaRestaurantes);
  	var plantillaMostrar = "";
 	//como parametro la unidad en este caso es restaurante es mi this
 	listaRestaurantes.forEach(function(restaurante){
@@ -103,17 +104,30 @@ var mostrarListas = function(listaRestaurantes){
 var cambiarUbicacion = function(){
 	//va el nombre del data, no del objeto
 	var latitudRestaurante = $(this).data('latitud');
-	console.log(latitudRestaurante);
+	// console.log(latitudRestaurante);
 	var longitudRestaurante = $(this).data('longitud');
-	console.log(longitudRestaurante);
-
+	// console.log(longitudRestaurante);
 	var coordenadas = {
 		lat: latitudRestaurante,
 		lng: longitudRestaurante
 	};
-	console.log(coordenadas);
+	// console.log(coordenadas);
 	mostrarMapa(coordenadas);
 }
+<<<<<<< HEAD
 
 $(document).ready(cargarPagina);
 
+=======
+var filtrar = function(e){
+	e.preventDefault();
+	var formatoBusqueda = $('#buscar').val().toLowerCase();
+	var filtroRestaurantes = listaRestaurantes.filter(function(restaurantes){
+		return restaurantes.categoria.toLowerCase().indexOf(formatoBusqueda) >= 0;
+	});
+	//es una parametro y es mi variable
+	mostrarListas(filtroRestaurantes);
+	
+}
+$(document).ready(cargarPagina);
+>>>>>>> 31ecdf977f8509f37cee30fd5927cd745375d2c4
