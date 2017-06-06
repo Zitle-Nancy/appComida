@@ -3,26 +3,34 @@ var listaRestaurantes =[
 		"categoria":"Comida Italiana",
 		"nombre": "Trattoria Giacovanni",
 		"foto": "https://goo.gl/F0elPJ",
-		"direccion": "Av. Sonora #180 Local 6, Cuauhtémoc, Condesa, 06100 Ciudad de México, CDMX"
+		"direccion": "Av. Sonora #180 Local 6, Cuauhtémoc, Condesa, 06100 Ciudad de México, CDMX",
+		"latitudes": "19.4132529",
+		"longitudes": "-99.169946"
 
 	},
 	{
 		"categoria":"Comida Italiana",
 		"nombre": "Bruno's / FeQ Pizza e cucina d`Italia",
 		"foto": "https://goo.gl/u2Apye",
-		"direccion": "Cumbres de Maltrata 376, Benito Juárez, Narvarte, 03020 Ciudad de México, CDMX"
+		"direccion": "Cumbres de Maltrata 376, Benito Juárez, Narvarte, 03020 Ciudad de México, CDMX",
+		"latitudes": "19.3908123",
+		"longitudes": "-99.1525949"
 	},
 	{
 		"categoria":"Comida Oriental",
 		"nombre": "Rokai",
 		"foto": "https://goo.gl/bIqUWZ",
-		"direccion": "Río Ebro 87, Cuauhtémoc, 06500 Ciudad de México, CDMX"
+		"direccion": "Río Ebro 87, Cuauhtémoc, 06500 Ciudad de México, CDMX",
+		"latitudes": "19.4287171",
+		"longitudes": "-99.1717733"
 	},
 	{
 		"categoria":"Comida Mexicana",
 		"nombre": "La Poblanita de Tacubaya Suc Patriotismo",
 		"foto": "https://goo.gl/XJRhRW",
-		"direccion": "Avenida Patriotismo #77, Miguel Hidalgo, Escandón I Secc, 11800 Ciudad de México, CDMX"
+		"direccion": "Avenida Patriotismo #77, Miguel Hidalgo, Escandón I Secc, 11800 Ciudad de México, CDMX",
+		"latitudes": "19.402274",
+		"longitudes": "-99.181394"
 	}
 ];
 var plantilla = '<div class="col s12 m7">'+
@@ -33,7 +41,7 @@ var plantilla = '<div class="col s12 m7">'+
 				'<img src="__foto__">'+
 			'</div>'+
 			'<div class="card-stacked">'+
-				'<div class="card-content">'+
+				'<div class="card-content address" data-latitud="__latitudes__" data-longitud="__longitudes__">'+
 					'<strong>Direccion:</strong>__direccion__<br>'+
 				'</div>'+
 			'</div>'+
@@ -41,8 +49,9 @@ var plantilla = '<div class="col s12 m7">'+
 	'</div>';
 
 var cargarPagina = function () {
-	$("#obtener-localizacion").click(obtenerUbicacion);
 	mostrarListas(listaRestaurantes);
+	$("#obtener-localizacion").click(obtenerUbicacion);
+	$('.address').click(cambiarUbicacion);	
 };
 var obtenerUbicacion = function (e) {
 	if (navigator.geolocation) {
@@ -65,7 +74,7 @@ var mostrarPosicion = function (posicion) {
 
 var mostrarMapa = function (coordenadas) {
 	var map = new google.maps.Map($('#mapa')[0], {
-      zoom: 8,
+      zoom: 15,
       center: coordenadas
     });
     var marker = new google.maps.Marker({
@@ -82,10 +91,27 @@ var mostrarListas = function(listaRestaurantes){
 		plantillaMostrar += plantilla.replace('__categoria__',restaurante.categoria)
 									 .replace('__nombre__',restaurante.nombre)
 									 .replace('__foto__',restaurante.foto)
-									 .replace('__direccion__',restaurante.direccion);
+									 .replace('__direccion__',restaurante.direccion)
+									 .replace('__latitudes__',restaurante.latitudes)
+									 .replace('__longitudes__',restaurante.longitudes);
 
 	});							 
 	$('#seccion-comida').html(plantillaMostrar);
  }
+
+var cambiarUbicacion = function(){
+	//va el nombre del data, no del objeto
+	var latitudRestaurante = $(this).data('latitud');
+	console.log(latitudRestaurante);
+	var longitudRestaurante = $(this).data('longitud');
+	console.log(longitudRestaurante);
+
+	var coordenadas = {
+		lat: latitudRestaurante,
+		lng: longitudRestaurante
+	};
+	console.log(coordenadas);
+	mostrarMapa(coordenadas);
+}
 
 $(document).ready(cargarPagina);
