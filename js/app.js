@@ -46,10 +46,13 @@ var cargarPagina = function () {
 };
 var obtenerUbicacion = function (e) {
 	if (navigator.geolocation) {
-		navigator.geolocation.getCurrentPosition(mostrarPosicion);
+		navigator.geolocation.getCurrentPosition(mostrarPosicion, function (error) {
+			console.log(error);
+		});
 	} else {
 		alert("Actualice su navegador");
 	}
+	// alert('mapa');
 };
 var mostrarPosicion = function (posicion) {
 	console.log(posicion);
@@ -62,7 +65,7 @@ var mostrarPosicion = function (posicion) {
 
 var mostrarMapa = function (coordenadas) {
 	var map = new google.maps.Map($('#mapa')[0], {
-      zoom: 17,
+      zoom: 8,
       center: coordenadas
     });
     var marker = new google.maps.Marker({
