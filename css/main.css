@@ -8,3 +8,9 @@ body{
 #mapa{
 	height: 400px;
 }
+.address{
+	cursor: pointer;
+}
+.mapaFijo{
+	position: fixed;
+}
