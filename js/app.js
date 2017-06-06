@@ -115,8 +115,5 @@ var cambiarUbicacion = function(){
 	mostrarMapa(coordenadas);
 }
 
-<<<<<<< HEAD
 $(document).ready(cargarPagina);
-=======
-$(document).ready(cargarPagina);
->>>>>>> 94fd23e09fdf4b877699e1411cca20dbbea28629
+
