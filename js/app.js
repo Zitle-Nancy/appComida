@@ -114,11 +114,7 @@ var cambiarUbicacion = function(){
 	// console.log(coordenadas);
 	mostrarMapa(coordenadas);
 }
-<<<<<<< HEAD
 
-$(document).ready(cargarPagina);
-
-=======
 var filtrar = function(e){
 	e.preventDefault();
 	var formatoBusqueda = $('#buscar').val().toLowerCase();
@@ -130,4 +126,4 @@ var filtrar = function(e){
 	
 }
 $(document).ready(cargarPagina);
->>>>>>> 31ecdf977f8509f37cee30fd5927cd745375d2c4
+
