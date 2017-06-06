@@ -10,4 +10,10 @@ body{
 }
 .address{
 	cursor: pointer;
+<<<<<<< HEAD
+=======
+}
+.mapaFijo{
+	position: fixed;
+>>>>>>> 94fd23e09fdf4b877699e1411cca20dbbea28629
 }

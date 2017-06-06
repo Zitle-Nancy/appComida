@@ -43,6 +43,7 @@ var plantilla = '<div class="col s12 m7">'+
 			'<div class="card-stacked">'+
 				'<div class="card-content address" data-latitud="__latitudes__" data-longitud="__longitudes__">'+
 					'<strong>Direccion:</strong>__direccion__<br>'+
+					'<a href="#mapa">Ubicate</a>'+
 				'</div>'+
 			'</div>'+
 		'</div>'+
@@ -114,4 +115,8 @@ var cambiarUbicacion = function(){
 	mostrarMapa(coordenadas);
 }
 
+<<<<<<< HEAD
 $(document).ready(cargarPagina);
+=======
+$(document).ready(cargarPagina);
+>>>>>>> 94fd23e09fdf4b877699e1411cca20dbbea28629
